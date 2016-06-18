@@ -54,12 +54,12 @@ if (Meteor.isServer){
 	Meteor.publish('thePlayers', function(){
 	var currentUserId = this.userId;
     return PlayersList.find({ createdBy: currentUserId });
-});
+	});
 }
 
 Meteor.methods({
     'createPlayer': function(playerNameVar){
-	check(playerNameVar, String);
+    check(playerNameVar, String);
     var currentUserId = Meteor.userId();
 	    if (currentUserId){
 	    	PlayersList.insert({
@@ -83,6 +83,6 @@ Meteor.methods({
 	    if (currentUserId){
 	    	PlayersList.update( { _id: selectedPlayer, createdBy: currentUserId },
 	            { $inc: {score: scoreValue} });
-			}  
-	    }
+		}  
+	}
 });
